@@ -1,4 +1,4 @@
-# DetecciÃ³n del cÃ¡ncer de mama
+# Detección del cáncer de mama
 
 A short description of the project.
 

@@ -1,4 +1,4 @@
-# DetecciÃ³n del cÃ¡ncer de mama Installation Guide
+# Detección del cáncer de mama Installation Guide
 
 Welcome to the **DetecciÃ³n del cÃ¡ncer de mama** installation guide! This guide will walk you through setting up the environment, installing necessary dependencies, and configuring essential tools to ensure a smooth development experience.
 

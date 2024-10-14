@@ -160,4 +160,10 @@ cython_debug/
 #.idea/
 
 # Exclude data from source control
-# /data/
+data/raw/
+
+# Configurations
+.vscode/
+
+# Project files
+*.csv
