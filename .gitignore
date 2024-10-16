@@ -167,3 +167,5 @@ data/raw/
 
 # Project files
 *.csv
+*.pkl
+*.html
