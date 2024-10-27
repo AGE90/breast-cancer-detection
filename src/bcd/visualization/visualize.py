@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
+from bcd.utils.paths import data_raw_dir
+
 def plot_size_distribution(sizes, title):
     plt.figure(figsize=(8, 4))
     plt.hist(sizes, bins=50)
@@ -20,21 +22,16 @@ def plot_aspect_ratio_distribution(aspects):
     plt.ylabel('Frequency')
     plt.show()
 
-def display_sample_images(directory, num_samples=5):
-    all_images = []
-    for subdir, _, files in os.walk(directory):
-        for file in files:
-            if file.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
-                all_images.append(os.path.join(subdir, file))
-
-    sample_images = np.random.choice(all_images, num_samples, replace=False)
+def display_sample_images(images_paths, num_samples=5):
+    
+    sample_images = np.random.choice(images_paths, num_samples, replace=False)
 
     plt.figure(figsize=(15, 3*num_samples))
     for i, img_path in enumerate(sample_images):
-        img = Image.open(img_path)
+        img = Image.open(data_raw_dir(img_path))
         plt.subplot(num_samples, 1, i+1)
         plt.imshow(img, cmap='gray')
-        plt.title(f'Image {i+1}: {img.size[0]}x{img.size[1]}')
+        plt.title(f'Image: {img_path}')
         plt.axis('off')
     plt.tight_layout()
     plt.show()

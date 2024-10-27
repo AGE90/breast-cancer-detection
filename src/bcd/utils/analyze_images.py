@@ -1,22 +1,22 @@
 
 import os
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, List
 
 from PIL import Image
 
+from bcd.utils.paths import data_raw_dir
 
-def analyze_images(directory: Path) -> Tuple[list, list, list]:
+
+def analyze_images(img_paths: List[Path]) -> Tuple[list, list, list]:
     """
     Analyzes the images in a directory and returns their dimensions 
     and aspect ratios.
 
     Parameters
     ----------
-    directory : Path
-        The directory path containing the image files. The function 
-        will recursively traverse the directory to find image files 
-        with the extensions: .png, .jpg, .jpeg, .tiff, .bmp, and .gif.
+    img_paths : Path
+        Paths to the image files.
 
     Returns
     -------
@@ -30,14 +30,11 @@ def analyze_images(directory: Path) -> Tuple[list, list, list]:
     heights = []
     aspects = []
 
-    for subdir, _, files in os.walk(directory):
-        for file in files:
-            if file.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
-                img_path = os.path.join(subdir, file)
-                with Image.open(img_path) as img:
-                    width, height = img.size
-                    widths.append(width)
-                    heights.append(height)
-                    aspects.append(width / height)
+    for img_path in img_paths:
+        with Image.open(data_raw_dir(img_path)) as img:
+            width, height = img.size
+            widths.append(width)
+            heights.append(height)
+            aspects.append(width / height)
 
     return widths, heights, aspects
